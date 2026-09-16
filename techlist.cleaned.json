@@ -1,5 +1,6 @@
 {
   "source_file": "live:sf+la",
+  "snapshot_generated_at": "2026-09-16T13:00:00.000Z",
   "notes": [
     "Combined SF + LA Tech Week snapshots. Each event has city \"sf\" or \"la\".",
     "SF source: live https://www.tech-week.com/calendar/sf. LA source: live https://www.tech-week.com/calendar/la (Playwright Chromium headless; scroll until .event-title count stabilized; in-page DOM extract).",

@@ -207,6 +207,8 @@ Twice a day at **6:00 AM and 6:00 PM America/Los_Angeles**, the bot:
 
 After the calendar scrape, enrichment uses Playwright page-context tRPC `calendar.events` with `theme`/`format` filters (66+ passes), joins results by event identity, and writes official `topics`/`types` UI labels. See [docs/enrichment-discovery.md](docs/enrichment-discovery.md).
 
+The cleaned catalog includes a top-level `snapshot_generated_at` ISO-8601 UTC timestamp (e.g., `2026-09-16T13:00:00.000Z`) indicating when the snapshot was produced. MCP tool responses surface this value in a structured `snapshot_generated_at` field and may append a human note like `(data as of 2026-09-16T13:00:00.000Z)` to text summaries when relevant. Older catalogs without the field are accepted; freshness is omitted in that case.
+
 The install-page “Explore N events” count includes both SF and LA and is
 derived from `techlist.cleaned.json` at build time (events labeled `Closed` are
 excluded), so updating the JSON is enough to refresh that homepage number after

@@ -1,6 +1,7 @@
 """Extract the copied Tech Week HTML without network access or dependencies."""
 import json
 import re
+from datetime import datetime, timezone
 from collections import Counter
 from html.parser import HTMLParser
 from pathlib import Path
@@ -132,8 +133,17 @@ def main():
         'Neighborhoods are not venue addresses. End times, prices, and descriptions are not supplied by these rows.',
         'All listed dates are retained, including dates outside the October 5-11 SF headline range.',
     ]
-    payload = {'source_file': 'techlist.md', 'notes': notes, 'event_count': len(events),
-               'source_event_rows': event_rows, 'exact_duplicates_removed': duplicates, 'events': events}
+    # ISO-8601 UTC with Z suffix, e.g., 2026-09-16T13:00:00Z
+    snapshot_generated_at = datetime.now(timezone.utc).replace(microsecond=0).isoformat().replace('+00:00', 'Z')
+    payload = {
+        'source_file': 'techlist.md',
+        'notes': notes,
+        'event_count': len(events),
+        'source_event_rows': event_rows,
+        'exact_duplicates_removed': duplicates,
+        'snapshot_generated_at': snapshot_generated_at,
+        'events': events
+    }
     (ROOT / 'techlist.cleaned.json').write_text(json.dumps(payload, ensure_ascii=False, indent=2) + '\n')
     lines = ['# Tech Week — cleaned event list', '', f'{len(events)} events extracted from `techlist.md`.', '']
     lines += [f'- {note}' for note in notes]
