@@ -19,7 +19,7 @@ type Event = {
   city?: "sf" | "la";
 };
 
-type Catalog = { notes: string[]; events: Event[] };
+type Catalog = { notes: string[]; events: Event[]; snapshot_generated_at?: string; [key: string]: unknown };
 
 const before = JSON.parse(readFileSync(jsonPath, "utf8")) as Catalog;
 let updatedCount = 0;

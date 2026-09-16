@@ -83,7 +83,7 @@ export type SearchEvent = Event & {
 };
 
 export type SearchResult = { events: SearchEvent[]; total_matches: number; truncated: boolean };
-type Catalog = { notes: string[]; events: Event[] };
+type Catalog = { notes: string[]; events: Event[]; snapshot_generated_at?: string };
 export type FacetValue = { value: string; count: number };
 
 const TECH_WEEK_EVENT_PATH = /^\/go\/event\/[A-Za-z0-9_-]+$/;
@@ -276,11 +276,20 @@ export function listFacets(events: Event[]) {
 
 export function loadCatalog(): Catalog {
   // Backfill missing city as "sf" to preserve compatibility with older snapshots.
-  const raw = catalogJson as unknown as { notes: string[]; events: Array<Omit<Event, "city"> & Partial<Pick<Event, "city">>> };
+  const raw = catalogJson as unknown as {
+    notes: string[];
+    events: Array<Omit<Event, "city"> & Partial<Pick<Event, "city">>>;
+    snapshot_generated_at?: string;
+  };
   for (const event of raw.events) {
     if (!("city" in event) || !event.city) (event as any).city = "sf";
   }
   const catalog = raw as unknown as Catalog;
+  // Gracefully tolerate missing snapshot_generated_at on older catalogs.
+  if (catalog.snapshot_generated_at && Number.isNaN(Date.parse(catalog.snapshot_generated_at))) {
+    // If present but unparsable, drop it to avoid confusing downstream consumers.
+    delete (catalog as any).snapshot_generated_at;
+  }
   for (const event of catalog.events) {
     if (!isTechWeekEventUrl(event.event_url)) throw new Error(`Catalog contains an invalid Tech Week event URL at source row ${event.source_row}.`);
     calendarFields(event);
