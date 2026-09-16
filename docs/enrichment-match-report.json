@@ -1,53 +1,33 @@
 {
-  "catalog_count": 2421,
-  "enrichment_api_ids": 2422,
-  "matched_exact": 1894,
-  "matched_primary_host": 524,
-  "matched_fuzzy": 0,
+  "catalog_count": 2440,
+  "enrichment_api_ids": 2440,
+  "matched_exact": 1899,
+  "matched_primary_host": 539,
+  "matched_fuzzy": 1,
   "matched_title_date_time": 0,
-  "unmatched": 3,
-  "with_ge1_topic": 2349,
-  "with_ge1_type": 2417,
-  "with_ge1_topic_or_type": 2418,
-  "match_rate_topic_or_type_pct": 99.88,
+  "unmatched": 1,
+  "with_ge1_topic": 2367,
+  "with_ge1_type": 2439,
+  "with_ge1_topic_or_type": 2439,
+  "match_rate_topic_or_type_pct": 99.96,
   "match_methods": {
-    "exact": 1894,
-    "primary_host": 524,
-    "fuzzy": 0,
+    "exact": 1899,
+    "primary_host": 539,
+    "fuzzy": 1,
     "title_date_time": 0,
-    "none": 3
+    "none": 1
   },
   "host_join_note": "Catalog host often lists cohosts comma-joined (from DOM); API company is owner-only. Matching uses exact identity first, then primary-host (first comma segment), then fuzzy city+title+primaryHost+date, then city+title+date+time.",
   "unmatched_samples": [
     {
       "city": "sf",
-      "date_label": "Monday, Oct 5",
-      "start_time_display": "10:00am",
-      "title": "Shaping What’s Next with Techstars, Zendesk & DigitalOcean",
-      "host": "Techstars, DigitalOcean, Zendesk",
-      "neighborhood": "SOMA",
-      "source_row": 36
-    },
-    {
-      "city": "sf",
-      "date_label": "Tuesday, Oct 6",
-      "start_time_display": "5:00pm",
-      "title": "Self-driving infrastructure + food/drinks",
-      "host": "Modelence",
-      "neighborhood": "Embarcadero",
-      "source_row": 393
-    },
-    {
-      "city": "la",
-      "date_label": "Thursday, Oct 15",
-      "start_time_display": "6:00pm",
-      "title": "Revel on Tap: Hard-tech Happy Hour @ Common Space Brewery",
-      "host": "Revel",
-      "neighborhood": "Hawthorne",
-      "source_row": 2232
+      "date_label": "Saturday, Oct 10",
+      "start_time_display": "12:00pm",
+      "title": "Ship Like a Baddie Hackathon: Vibe Code a Startup Biz & Ship It with Analytics",
+      "host": "AI Founder Playbook by Byte&Chord, Inc",
+      "neighborhood": "Other",
+      "source_row": 1580
     }
   ],
-  "ambiguous_samples": [],
-  "unmatched_explanation": "3 catalog rows unmatched due to title renames between DOM catalog scrape and later tRPC enrichment (same city/date/time/host/neighborhood slot). Examples: catalog \"Shaping What's Next with Techstars...\" vs API \"When AI Leaves the Screen with Techstars...\"; catalog \"Revel on Tap...\" vs API \"Hops & Hypercars...\". Not join-key bugs.",
-  "coverage_note": "≥1 topic OR type on 2418/2421 (99.88%). Primary-host fallback required because catalog DOM joins cohosts into host string while API company is owner-only."
+  "ambiguous_samples": []
 }
