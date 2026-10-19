@@ -10,7 +10,15 @@ test("counts searchable events across both cities without a snapshot-specific to
   assert.ok(available.some((event) => event.city === "la"));
   const html = installPage("https://events.example.com");
   assert.match(html, /<h1>Tech Week MCP<\/h1>/);
-  assert.ok(html.includes(`Explore ${available.length.toLocaleString("en-US")} events`));
+  assert.ok(html.includes(`Archive of ${available.length.toLocaleString("en-US")} past events`));
+});
+
+test("labels the service as deprecated and historical", () => {
+  const html = installPage("https://events.example.com");
+  assert.match(html, /class="deprecation-banner"/);
+  assert.match(html, /<strong>Deprecated\.<\/strong> SF and LA Tech Week 2026 are over/);
+  assert.match(html, /<meta name="description" content="Tech Week MCP is deprecated\./);
+  assert.doesNotMatch(html, /Explore [\d,]+ events/);
 });
 
 test("renders client installation actions from the deployment origin", () => {
