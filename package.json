@@ -3,7 +3,7 @@
   "version": "1.0.1",
   "private": true,
   "type": "module",
-  "description": "Read-only MCP server for searching the scraped SF Tech Week event catalog.",
+  "description": "Deprecated: read-only MCP server with a frozen, historical snapshot of the SF and LA Tech Week 2026 calendars.",
   "scripts": {
     "build": "tsc --noEmit",
     "start": "wrangler dev",

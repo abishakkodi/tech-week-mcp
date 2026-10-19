@@ -43,8 +43,8 @@ export function installPage(origin: string): string {
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
   <meta name="theme-color" content="#e5eef5">
-  <meta name="description" content="Add the Tech Week MCP server to your AI coding client for San Francisco Tech Week event discovery.">
-  <title>Add Tech Week MCP</title>
+  <meta name="description" content="Tech Week MCP is deprecated. SF and LA Tech Week 2026 are over; this read-only MCP server now serves a frozen, historical snapshot of the 2026 calendars and is no longer updated.">
+  <title>Tech Week MCP (deprecated)</title>
   <link rel="icon" href="${favicon}">
   <style>
     :root{
@@ -123,6 +123,8 @@ export function installPage(origin: string): string {
     .github-link{margin-top:10px;margin-bottom:-6px}
     .site-footer{margin-top:12px;text-align:center;color:#45454f;font-size:.6875rem;line-height:1.5;text-wrap:balance}
     .site-footer p{margin:0}
+    .deprecation-banner{margin:0 0 14px;padding:10px 14px;border-radius:12px;background:rgba(255,204,0,.22);border:1px solid rgba(178,134,0,.35);color:#3d2f00;font-size:.8125rem;line-height:1.45;text-align:center;text-wrap:balance}
+    .deprecation-banner strong{font-weight:700}
     .event-count{margin:8px 0 10px;text-align:center;color:#45454f;font-size:.8125rem;line-height:1.4}
     @media(max-width:380px){.card{padding-inline:16px}.prompts .stream{font-size:.8125rem}}
     @media(min-width:520px){.tabs{grid-template-columns:repeat(4,1fr)}}
@@ -141,11 +143,12 @@ export function installPage(origin: string): string {
   <img class="background" src="/golden-gate-watercolor.png" alt="" aria-hidden="true" fetchpriority="high">
   <main>
     <div class="card">
+      <p class="deprecation-banner" role="status"><strong>Deprecated.</strong> SF and LA Tech Week 2026 are over. This server is kept online as a read-only archive of the 2026 calendars and is no longer updated, so it has no live event coverage.</p>
       <h1>Tech Week MCP</h1>
-      <p class="event-count">Explore ${eventCount.toLocaleString("en-US")} events</p>
+      <p class="event-count">Archive of ${eventCount.toLocaleString("en-US")} past events</p>
       <p class="sr-only">Example prompts you can ask your AI coding client once the MCP is installed.</p>
       <p class="prompts" aria-hidden="true"><span class="stream"></span></p>
-      <div class="tabs" role="tablist" aria-label="Choose your client">
+      <div class="tabs" role="tablist" aria-label="Choose your client (archival install)">
         <button class="client" id="tab-codex" role="tab" aria-selected="true" tabindex="0" data-client="codex" aria-label="Codex CLI">Codex</button>
         <button class="client" id="tab-claude" role="tab" aria-selected="false" tabindex="-1" data-client="claude" aria-label="Claude Code CLI">Claude</button>
         <a class="client cursor-tab" id="tab-cursor" role="tab" aria-selected="false" tabindex="-1" href="${escapeHtml(cursorUrl)}" aria-label="Install in Cursor (opens the Cursor app)">Cursor</a>

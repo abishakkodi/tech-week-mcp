@@ -1,8 +1,13 @@
-# SF Tech Week MCP
+# SF Tech Week MCP (deprecated)
 
-An open-source, read-only MCP server for searching Tech Week calendar snapshots
-for San Francisco and Los Angeles. It runs on Cloudflare Workers and returns the Tech Week URLs
-already present in the source HTML.
+> **Deprecated (October 2026).** SF and LA Tech Week 2026 are over, and this
+> project is no longer maintained or synced. The server stays online as a
+> read-only archive of the final 2026 calendar snapshots; it has no live event
+> coverage. The install docs below are kept for archival use.
+
+An open-source, read-only MCP server for browsing the final Tech Week 2026
+calendar snapshots for San Francisco and Los Angeles. It runs on Cloudflare
+Workers and returns the Tech Week URLs already present in the source HTML.
 
 The Worker root serves installation actions for Codex, Claude Code, Cursor, and
 other MCP clients. Each action automatically uses the deployed origin. `/mcp`
@@ -39,8 +44,8 @@ that only permits same-origin images.
 - Evaluation: `compare_events`, `find_similar_events`, `find_alternatives`
 - Planning: `summarize_day`, `find_networking_targets`, `build_itinerary`, `create_ics`
 
-All tools are read-only and only read the bundled catalog snapshot, refreshed
-every 12 hours (see Automated sync below) — none make outbound requests to
+All tools are read-only and only read the bundled catalog snapshot, which is
+now frozen and no longer refreshed (see Automated sync below). None make outbound requests to
 third-party sites. `create_ics` returns a draft and never writes to a
 calendar. `build_itinerary` accepts free-time windows, keeping calendar
 credentials and private event contents outside this public server.
@@ -187,14 +192,17 @@ The public MCP endpoint is https://techweekmcp.com/mcp.
 
 ## Refresh the snapshot
 
-### Automated sync with Grok Bot
+### Automated sync with Grok Bot (stopped)
 
-We keep `techlist.cleaned.json` aligned with the live
+> The automated sync was stopped on October 19, 2026, after LA Tech Week 2026
+> ended. The description below is kept for historical reference.
+
+We kept `techlist.cleaned.json` aligned with the live
 [a16z Tech Week SF calendar](https://www.tech-week.com/calendar/sf) and
 [LA calendar](https://www.tech-week.com/calendar/la) using a Grok Bot assistant
 (**Tech Week MCP Updater**).
 
-Twice a day at **6:00 AM and 6:00 PM America/Los_Angeles**, the bot:
+Twice a day at **6:00 AM and 6:00 PM America/Los_Angeles**, the bot used to:
 
 1. Scrapes the live SF and LA calendars (full lists after scrolling; Firecrawl, with
    Parallel as a fallback)
